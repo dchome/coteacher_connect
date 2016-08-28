@@ -5,4 +5,6 @@ class Student < ActiveRecord::Base
   has_many :components
   has_many :subjects, through: :components
   has_many :special_needs
+
+  validates :first_name, :last_name, presence: true
 end

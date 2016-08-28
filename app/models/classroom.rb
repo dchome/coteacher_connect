@@ -5,4 +5,5 @@ class Classroom < ActiveRecord::Base
   has_many :components, through: :students
   has_many :messages
 
+  validates :name, :schoolyear, presence: true
 end
