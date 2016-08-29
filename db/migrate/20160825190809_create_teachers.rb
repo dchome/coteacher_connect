@@ -8,7 +8,7 @@ class CreateTeachers < ActiveRecord::Migration
       t.string :email, null: false
       t.string :password_digest, null: false
       t.string :photo_path
-      t.string :phone_number
+      t.string :phone_number, null: false
       t.timestamps null: false
     end
   end
