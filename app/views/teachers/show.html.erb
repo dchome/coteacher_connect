@@ -1,0 +1,36 @@
+Welcome, <%= @teacher.first_name + " " + @teacher.last_name %>.
+
+<p><%= link_to "Log Out", logout_path, method: :delete %></p>
+
+<div id='profile-wrapper'>
+  <div id='teacher-photo-wrapper'>
+    <% if @teacher.photo_path == "" %>
+      <p>What do you look like? Upload a photo!</p>
+    <% else %>
+      <img src="<%=@teacher.photo_path%>"/>
+    <% end %>
+  </div>
+  <p>Profile goes here.</p>
+</div>
+<div id='classroom-list-wrapper'>
+<h2><%=@teacher.first_name%>'s Classrooms</h2>
+<ul id='classroom-list-headers'>
+  <li class='list-header'>Name</li>
+  <li class='list-header'>School Year</li>
+  <li class='list-header'>Teachers</li>
+</ul>
+<ul id='classroom-ul'>
+  <% if @classrooms && @classrooms != [] %>
+    <% @classrooms.each do |classroom| %>
+      <li class='classroom-li'>
+        <div class='classroom-li-cell'><%=classroom.name%></div>
+        <div class='classroom-li-cell'><%=classroom.schoolyear%></div>
+        <div class='classroom-li-cell'><%=classroom.teachers[0]%></div>
+        <div class='classroom-li-cell'><%=classroom.teachers[1]%></div>
+      </li>
+    <% end %>
+  <% else %>
+    <li class='classroom-li'>You don't have any classes yet!</li>
+  <% end %>
+  <li class='classroom-li-cell'><%=link_to 'Set up a new classroom', new_classroom_path %></li>
+</ul>
