@@ -5,6 +5,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :text, null: false
       t.string :photo_path
       t.integer :messager_id, null: false
+      t.integer :classroom_id, null: false 
       t.timestamps null: false
     end
   end

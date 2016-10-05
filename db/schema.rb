@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20160825193435) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "text",        null: false
+    t.string   "text",         null: false
     t.string   "photo_path"
-    t.integer  "messager_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "messager_id",  null: false
+    t.integer  "classroom_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "notes", force: :cascade do |t|
