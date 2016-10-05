@@ -1,0 +1,27 @@
+<div id='logo_and_topnav'>
+  <h1>Classroom Connect</h1>
+  <h2> <%= @classroom ? "#{@classroom.name} (#{@classroom.id}): #{@classroom.schoolyear}" : "Default" %>
+  <ul id='topnav'>
+  </ul>
+  <h2>Teachers: <%= @teacher_list %>  </h2>
+
+</div>
+<div id='message-div'>
+  <h3>Messages</h3>
+  <div id='message-river-wrapper'>
+    <div id='message-river'>
+      <% if @first_ten_messages %>
+        <%= render partial: "messages/river", locals: {messages: @first_ten_messages} %>
+      <% else %>
+        <p>No messages yet</p>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>
+<p id="rename-link"><%= link_to "Rename Classroom", classroom_path(@classroom.id), method: :put %></p>
+
+<p id="test">Test</p>
+
+<p id="create-subject">Create a test subject</p>

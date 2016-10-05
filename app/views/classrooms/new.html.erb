@@ -1,0 +1,24 @@
+<div id="create-classroom-wrapper">
+  <h1>New Classroom</h1>
+
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <%= form_for @classroom do |f| %>
+    <%= f.label :name %>:
+    <%= f.text_field :name %><br />
+    <%= f.label "School Year" %>:
+    <%= f.text_field :schoolyear %><br />
+
+    <%=f.label "Co-teacher" %>:
+    <%= f.select :teachers, options_for_select(@other_teachers), {}, {multiple: false}  %>
+
+
+    <%= f.button :submit, {:class => "btn"}%>
+  <% end %>
+</div>
