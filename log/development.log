@@ -7691,3 +7691,131 @@ Processing by SubjectsController#create as */*
   [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "subjects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Subject 5"], ["created_at", "2016-09-14 04:23:46.025695"], ["updated_at", "2016-09-14 04:23:46.025695"]]
   [1m[35m (2.7ms)[0m  commit transaction
 Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/" for ::1 at 2016-10-05 14:11:48 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[35mTeacher Load (0.2ms)[0m  SELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" IS NULL LIMIT 1
+  [1m[36mClassroom Load (1.7ms)[0m  [1mSELECT  "classrooms".* FROM "classrooms"  ORDER BY "classrooms"."id" ASC LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (69.2ms)
+Completed 200 OK in 1801ms (Views: 1669.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/_general_functions.self-55b424a53f4cc159fc89f85ed4f061e804276196175da5a143fc5b77a561df55.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/classroom_show.self-c4b49db19efb5d37647a1fb7092ba8c0d0e79570f3feb8300a688752e3b8a1e3.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2016-10-05 14:11:51 -0400
+
+
+Started POST "/login" for ::1 at 2016-10-05 14:11:59 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kbi4L8zpuLbWdnDkTcKzacZIzPJDX4tgmT4uhHLH7kY9Tj9GnBil57Ch4fMhOgj+AdYuAHix56aTy4bTDJ6qrg==", "username"=>"danielhomer", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[35mTeacher Load (0.3ms)[0m  SELECT  "teachers".* FROM "teachers" WHERE "teachers"."username" = ? LIMIT 1  [["username", "danielhomer"]]
+Redirected to http://localhost:3000/teachers/2
+Completed 302 Found in 186ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/teachers/2" for ::1 at 2016-10-05 14:11:59 -0400
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTeacher Load (0.1ms)[0m  SELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mClassroom Load (9.8ms)[0m  [1mSELECT "classrooms".* FROM "classrooms" INNER JOIN "classrooms_teachers" ON "classrooms"."id" = "classrooms_teachers"."classroom_id" WHERE "classrooms_teachers"."teacher_id" = ?[0m  [["teacher_id", 2]]
+  [1m[35mTeacher Load (0.3ms)[0m  SELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?  [["classroom_id", 2]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1mSELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?[0m  [["classroom_id", 3]]
+  Rendered teachers/show.html.erb within layouts/application (50.3ms)
+Completed 200 OK in 231ms (Views: 99.0ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/classrooms/3" for ::1 at 2016-10-05 14:12:19 -0400
+Processing by ClassroomsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mClassroom Load (0.3ms)[0m  SELECT  "classrooms".* FROM "classrooms" WHERE "classrooms"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1mSELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?[0m  [["classroom_id", 3]]
+  [1m[35mMessage Load (24.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."classroom_id" = ?  [["classroom_id", 3]]
+  Rendered classrooms/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 282ms (Views: 214.8ms | ActiveRecord: 26.1ms)
+Started GET "/" for ::1 at 2016-10-05 14:27:16 -0400
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from raise_in_transactional_callbacks= at /Users/student/.rvm/gems/ruby-2.2.3/gems/activerecord-5.0.0.1/lib/active_record/transactions.rb:283)
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering sessions/new.html.erb within layouts/application
+  [1m[36mClassroom Load (0.2ms)[0m  [1m[34mSELECT  "classrooms".* FROM "classrooms" ORDER BY "classrooms"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered sessions/new.html.erb within layouts/application (95.7ms)
+Completed 200 OK in 1802ms (Views: 1674.1ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/login" for ::1 at 2016-10-05 14:27:26 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Qgn7T6xiyOE6hLf2iisS2DHA/wWT43wqdzflKo18JAHF6A9qrH4UyXvhfifREz7HTrOVrSPloPp4k3RET7x06Q==", "username"=>"danielhomer", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mTeacher Load (3.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."username" = ? LIMIT ?[0m  [["username", "danielhomer"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/teachers/2
+Completed 302 Found in 186ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/teachers/2" for ::1 at 2016-10-05 14:27:26 -0400
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering teachers/show.html.erb within layouts/application
+  [1m[36mClassroom Load (37.5ms)[0m  [1m[34mSELECT "classrooms".* FROM "classrooms" INNER JOIN "classrooms_teachers" ON "classrooms"."id" = "classrooms_teachers"."classroom_id" WHERE "classrooms_teachers"."teacher_id" = ?[0m  [["teacher_id", 2]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?[0m  [["classroom_id", 2]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?[0m  [["classroom_id", 3]]
+  Rendered teachers/show.html.erb within layouts/application (65.6ms)
+Completed 200 OK in 248ms (Views: 142.4ms | ActiveRecord: 38.9ms)
+
+
+Started GET "/classrooms/new" for ::1 at 2016-10-05 14:27:29 -0400
+Processing by ClassroomsController#new as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers"[0m
+  Rendering classrooms/new.html.erb within layouts/application
+  Rendered classrooms/new.html.erb within layouts/application (102.0ms)
+Completed 200 OK in 142ms (Views: 129.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/classrooms" for ::1 at 2016-10-05 14:27:43 -0400
+Processing by ClassroomsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xNJPc6bKZkKFa7zZnDPZKYeOL+4ecgcybC22qcNBZplDM7tWpta6asQOdQjHC/U2+P1FRq502+JjiSfHAYE2cQ==", "classroom"=>{"name"=>"Classroom 4", "schoolyear"=>"2016-2017", "teachers"=>"Test Teacher"}, "button"=>""}
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."first_name" = ? AND "teachers"."last_name" = ?[0m  [["first_name", "Test"], ["last_name", "Teacher"]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (70.1ms)[0m  [1m[32mINSERT INTO "classrooms" ("name", "schoolyear", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Classroom 4"], ["schoolyear", "2016-2017"], ["created_at", 2016-10-05 18:27:43 UTC], ["updated_at", 2016-10-05 18:27:43 UTC]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "classrooms_teachers" ("teacher_id", "classroom_id") VALUES (?, ?)[0m  [["teacher_id", 2], ["classroom_id", 4]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "classrooms_teachers" ("teacher_id", "classroom_id") VALUES (?, ?)[0m  [["teacher_id", 3], ["classroom_id", 4]]
+  [1m[35m (45.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/classrooms/4
+Completed 302 Found in 219ms (ActiveRecord: 118.2ms)
+
+
+Started GET "/classrooms/4" for ::1 at 2016-10-05 14:27:43 -0400
+Processing by ClassroomsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mClassroom Load (0.3ms)[0m  [1m[34mSELECT  "classrooms".* FROM "classrooms" WHERE "classrooms"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" INNER JOIN "classrooms_teachers" ON "teachers"."id" = "classrooms_teachers"."teacher_id" WHERE "classrooms_teachers"."classroom_id" = ?[0m  [["classroom_id", 4]]
+  [1m[36mMessage Load (30.5ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."classroom_id" = ?[0m  [["classroom_id", 4]]
+  Rendering classrooms/show.html.erb within layouts/application
+  Rendered classrooms/show.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 149ms (Views: 42.8ms | ActiveRecord: 31.5ms)
+
+

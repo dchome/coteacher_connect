@@ -1,8 +1,8 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 
-gem 'rails'
+gem 'rails', '~> 5.0'
 
 gem 'sqlite3'
 
